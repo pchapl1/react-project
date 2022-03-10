@@ -1,0 +1,10 @@
+.catalog {
+    margin-bottom: 125px;
+}
+
+
+.catalog h1 {
+    color: blueviolet;
+    display: flex;
+    justify-content: center;
+}
