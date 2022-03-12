@@ -12,7 +12,7 @@ const Catalog = () => {
         let services = new DataService();
         let data = services.getCatalog();
         setProducts(data);
-        // return products
+
     }
 
     useEffect( () => {
@@ -22,7 +22,7 @@ const Catalog = () => {
     return (
         <div className="catalog">
             { products.map( 
-               (prod) => (<Product key={prod._id} title={prod.title} price = {prod.price} image = {prod.image}/>)
+               (prod) => (<Product key={prod._id} data={prod}/>)
              ) }
         </div>
     );

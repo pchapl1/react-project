@@ -1,17 +1,20 @@
 import { useState } from 'react';
 import './qtyPicker.css'
 
-const QtyPicker = () => {
-    let [qty, setqty] = useState(1)
+const QtyPicker = (props) => {
+    let [qty, setQty] = useState(1)
 
     const handleDecrease = () => {
         if (qty > 1)
-            setqty(qty-1)
+            setQty(qty-=1);
+            props.onChange(qty);
     }
 
 
     const handleIncrease = () => {
-        setqty(qty+1)
+        setQty(qty+=1)
+        props.onChange(qty)
+
     }   
     return (
         <div className='qtyPicker'>

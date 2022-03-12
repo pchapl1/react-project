@@ -13,8 +13,8 @@ var catalog = [
     },
     {
         _id : 'adsfdfde',
-        title : 'Cabernet Split Hem',
-        price : 25.99,
+        title : 'Cab Split Hem',
+        price : 25.93,
         stock : 2,
         category : 'short sleeve',
         image : 'cabernet-split-hem.jpeg'
