@@ -50,6 +50,15 @@ class DataService{
     getCatalog(){
         return catalog;
     }
+
+    saveProduct(prod) {
+        console.log('sending product to server...')
+    }
+
+
+    saveCoupon(prod) {
+        console.log('saving Coupon...')
+    }
 }
 
 export default DataService;

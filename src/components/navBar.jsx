@@ -19,6 +19,12 @@ const NavBar = () => {
         <li className="nav-item">
           <a className="nav-link" href="/catalog">Catalog</a>
         </li>
+        <li className="nav-item">
+          <a className="nav-link" href="/admin">Admin</a>
+        </li>
+        <li className="nav-item">
+          <a className="nav-link" href="/cart">Cart</a>
+        </li>
       </ul>
     </div>
   </div>
