@@ -56,7 +56,7 @@ class DataService{
     }
 
 
-    saveCoupon(prod) {
+    saveCoupon(coup) {
         console.log('saving Coupon...')
     }
 }

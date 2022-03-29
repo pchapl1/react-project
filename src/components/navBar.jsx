@@ -1,6 +1,11 @@
+import { useContext } from 'react';
+import Cart from './cart';
 import './navBar.css';
+import Store from '../context/storeContext'
 
 const NavBar = () => {
+    const cart = useContext(Store).cart
+    console.log(cart.length)
     return (
 <nav className="navbar navbar-expand-lg navbar-dark bg-dark">
   <div className="container-fluid">
@@ -23,8 +28,9 @@ const NavBar = () => {
           <a className="nav-link" href="/admin">Admin</a>
         </li>
         <li className="nav-item">
-          <a className="nav-link" href="/cart">Cart</a>
-        </li>
+          <a className="nav-link" href="/cart">Cart </a>
+        </li> 
+          <form className='d-flex text-light align-items-center' action="">Cart: {cart.length}</form>
       </ul>
     </div>
   </div>

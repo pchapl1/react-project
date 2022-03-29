@@ -9,9 +9,11 @@ import Home from './components/home';
 import Admin from './components/admin';
 import Cart from './components/cart';
 import { BrowserRouter, Route, Routes } from 'react-router-dom'
+import GlobalState from './context/globalState';
 function App() {
   return (
     <div className="App">
+      <GlobalState>
       <BrowserRouter>
         <NavBar></NavBar>
         <Routes>
@@ -26,6 +28,7 @@ function App() {
         </Routes>
         <Footer></Footer>
       </BrowserRouter>
+      </GlobalState>
     </div>
   );
 }

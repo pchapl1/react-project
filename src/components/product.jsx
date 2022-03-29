@@ -1,13 +1,28 @@
-import { useState } from 'react'
+import { useContext, useState } from 'react'
 import './product.css'
 import QtyPicker from './qtyPicker'
+import Store from '../context/storeContext'
+import GlobalState from '../context/globalState'
 
 
 const Product = (props) => {
     let [total, setTotal] =useState(props.data.price)
+    let [quantity, setQuantity] =useState(1)
+    const addContext = useContext(Store).addProdToCart;
+
     const onQtyChange = (qty) => {
+
         setTotal(total = Math.round((props.data.price * qty +Number.EPSILON)*100)/100)
     }
+
+    const addProduct = () => {
+        let cartProd = {...props.data}
+        cartProd.total = total;
+        cartProd.quantity = quantity;
+        addContext(cartProd.quantity)
+        // addProdToCart(cartProd)
+    }
+
 
 
     return (
@@ -18,7 +33,7 @@ const Product = (props) => {
             <label htmlFor="">price: ${props.data.price}</label>
             <label htmlFor="">total: ${total}</label>
             <QtyPicker onChange={onQtyChange}></QtyPicker>
-            <button className='btn btn-primary btn-sm'>Add</button>
+            <button onClick={addProduct} className='btn btn-primary btn-sm'>Add</button>
         </div>
     )
 }

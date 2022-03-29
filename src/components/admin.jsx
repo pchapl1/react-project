@@ -7,6 +7,8 @@ const Admin = ()=> {
 
     let [prod, setProd] = useState({})
     let [coup, setCoupon] = useState({})
+    let [allCoups, setAllCoups] = useState([])
+    let [allProds, setAllProds] = useState([])
 
     const handleInputChange = (e) => {
         let copy = prod;
@@ -14,29 +16,32 @@ const Admin = ()=> {
         setProd(copy)
     }
 
-    const handleSubmit = () => {
-        console.log(prod)
-    }
 
-    const saveProduct = ()=> {
-        console.log(prod);
+    const saveProduct1 = ()=> {
         let service = new DataService();
         service.saveProduct(prod)
 
+        let copy = [...allProds]
+        copy.push(prod)
+        setAllProds(copy)
     }
 
 // coupon ===========================================================
 
     const handleCouponChange = (e) => {
-        let coupon = coup;
-        coupon[e.target.name] = e.target.value;
-        setProd(coupon)
+        let copy = {...coup};
+        copy[e.target.name] = e.target.value;
+        setCoupon(copy)
     }
 
     const saveCoupon = () => {
-        console.log(coup);
+        
         let service = new DataService();
         service.saveCoupon(coup)
+
+        let copy = [...allCoups]
+        setAllCoups(copy);
+        console.log(copy)
     }
 
     return (
@@ -68,24 +73,31 @@ const Admin = ()=> {
                     <label className='col-form-label' htmlFor="">Image: </label>
                     <input onChange= {handleInputChange} name='image' type="text" />
                 </div>
-                <button onClick={handleSubmit} className="btn btn-outline-dark">Save Product</button>
+                <button onClick={saveProduct1} className="btn btn-outline-dark">Save Product</button>
             </section>
             <section className='my-3'>
                 <h3 className='mb-3'>Coupon Codes</h3>
                 <div className="form-row">
                 <div className="form-group">
                     <label htmlFor="">Code: </label>
-                    <input onChange={handleCouponChange} name='code-name' type="text" />
+                    <input onChange={handleCouponChange} name='code' type="text" />
                 </div>
                 <div className="form-group">
                     <label htmlFor="">% discount: </label>
                     <input name = 'discount-percent' type="text" />
                 </div>
                 <button onClick={saveCoupon} className="btn btn-outline-dark">Save Coupon</button>
-
                 </div>
 
             </section>
+            <div className="coupon-list">
+                {allCoups.map(coup =>(
+                    <div key= {coup.code}>
+                        <label htmlFor="">{coup.code}</label>
+                    </div>
+
+                ))}
+            </div>
             </div>
         </div>
 
