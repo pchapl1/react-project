@@ -2,10 +2,19 @@ import { useContext } from 'react';
 import Cart from './cart';
 import './navBar.css';
 import Store from '../context/storeContext'
+import {Link} from 'react-router-dom'
 
 const NavBar = () => {
     const cart = useContext(Store).cart
-    console.log(cart.length)
+    const getNumber = () => {
+      let total = 0
+      for (let x = 0; x < cart.length; x ++){
+
+        let prod = cart[x].quantity
+        total += prod
+      }
+      return total
+    }
     return (
 <nav className="navbar navbar-expand-lg navbar-dark bg-dark">
   <div className="container-fluid">
@@ -16,21 +25,20 @@ const NavBar = () => {
     <div className="collapse navbar-collapse" id="navbarNav">
       <ul className="navbar-nav">
         <li className="nav-item">
-          <a className="nav-link active" aria-current="page" href="/home">Home</a>
+          <Link to='/home' className="nav-link" >Home</Link>
         </li>
         <li className="nav-item">
-          <a className="nav-link" href="/about">About</a>
+          <Link to='/about' className="nav-link">About</Link>
         </li>
         <li className="nav-item">
-          <a className="nav-link" href="/catalog">Catalog</a>
+          <Link className='nav-link' to= "/catalog">Catalog</Link>
         </li>
         <li className="nav-item">
-          <a className="nav-link" href="/admin">Admin</a>
+          <Link to='/admin' className="nav-link" href="/admin">Admin</Link>
         </li>
         <li className="nav-item">
-          <a className="nav-link" href="/cart">Cart </a>
+          <Link to = '/cart' className="nav-link"> View Cart: {getNumber()}</Link>
         </li> 
-          <form className='d-flex text-light align-items-center' action="">Cart: {cart.length}</form>
       </ul>
     </div>
   </div>

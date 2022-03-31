@@ -11,7 +11,7 @@ const Product = (props) => {
     const addContext = useContext(Store).addProdToCart;
 
     const onQtyChange = (qty) => {
-
+        setQuantity(qty) 
         setTotal(total = Math.round((props.data.price * qty +Number.EPSILON)*100)/100)
     }
 
@@ -19,8 +19,9 @@ const Product = (props) => {
         let cartProd = {...props.data}
         cartProd.total = total;
         cartProd.quantity = quantity;
-        addContext(cartProd.quantity)
-        // addProdToCart(cartProd)
+        console.log(cartProd)
+        addContext(cartProd)
+
     }
 
 
