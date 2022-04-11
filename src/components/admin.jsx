@@ -34,16 +34,27 @@ const Admin = ()=> {
         setCoupon(copy)
     }
 
-    const saveCoupon = () => {
+    const saveCoupon = async () => {
+        console.log(coup)
         
         let service = new DataService();
-        service.saveCoupon(coup)
+        let resp = await service.saveCoupon(coup)
 
         let copy = [...allCoups]
+        copy.push(resp)
         setAllCoups(copy);
-        console.log(copy)
+
     }
 
+    const loadCoupons = async () => {
+        let service = new DataService();
+        let all = await service.getCoupons()
+        setAllCoups(all)
+    }
+
+    useEffect(()=>{
+        loadCoupons()
+    }, [])
     return (
         <div className='admin-page'>
             <div className="my-3">
@@ -84,16 +95,17 @@ const Admin = ()=> {
                 </div>
                 <div className="form-group">
                     <label htmlFor="">% discount: </label>
-                    <input name = 'discount-percent' type="text" />
+                    <input onChange={handleCouponChange} name = 'discount' type="text" />
                 </div>
                 <button onClick={saveCoupon} className="btn btn-outline-dark">Save Coupon</button>
                 </div>
 
             </section>
             <div className="coupon-list">
+                <h1>Coupons</h1>
                 {allCoups.map(coup =>(
-                    <div key= {coup.code}>
-                        <label htmlFor="">{coup.code}</label>
+                    <div key = {coup._id}>
+                        <label htmlFor="">{coup.code} : {coup.discount}</label>
                     </div>
 
                 ))}

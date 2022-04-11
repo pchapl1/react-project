@@ -11,6 +11,7 @@ import Cart from './components/cart';
 import { BrowserRouter, Route, Routes } from 'react-router-dom'
 import GlobalState from './context/globalState';
 function App() {
+
   return (
     <div className="App">
       <GlobalState>
